@@ -1,28 +1,20 @@
 const express = require('express')
+const passport = require('passport')
 const router = express.Router()
+const {ensureAuth, ensureGuest} = require('../middleware/auth.js')
 
-
-router.get('/', (req, res) => {
-  console.log('Time: ', Date.now())
-  res.send('Login')
+router.get('/', ensureGuest, (req, res) => {
+  res.render('login', {
+    layout: 'login'
+  })
 })
 
-router.get('/dashboard', (req, res) => {
-  console.log(`Time: ${Date.now()}`)
-  res.send('Dashboard')
+router.get('/dashboard', ensureAuth, (req, res) => {
+  consoe.log(req.user)
+  res.render('dashboard', {
+    layout: 'main'
+  })
 })
 
-router.get('/about', (req, res) => {
-  console.log(req)
-  console.log('...........')
-  console.log(res)
-  res.send('About')
-})
-
-router.post('/submit', (req, res) => {
-  const post = req.body
-  console.log('postSubmit', req)
-  res.send('Testing')
-})
 
 module.exports = router
