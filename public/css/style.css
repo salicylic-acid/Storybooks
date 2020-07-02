@@ -1,5 +1,5 @@
 body {
-  background-color: lightblue;
+  background-color: lightgrey;
 }
 
 .login-container {
@@ -10,4 +10,8 @@ body {
 
 p {
   margin: 10px 0 !important;
+}
+
+.background-color {
+  color: indigo;
 }
