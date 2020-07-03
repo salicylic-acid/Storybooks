@@ -1,5 +1,4 @@
 const express = require('express')
-const app = express()
 const dotenv = require('dotenv').config({
   path: './config/config.env'
 })
@@ -14,9 +13,15 @@ const passport = require('passport')
 require('./config/passport')(passport)
 const PORT = process.env.PORT || 5000
 
+connectDB()
+
+const app = express()
+
 process.env.NODE_ENV === 'development' ? app.use(morgan('dev')) : -1;
 
-connectDB()
+//Body Parser
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 
 //Session
 app.use(session({
